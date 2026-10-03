@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Math Adventure ป.1 | ครูป๊อป</title>
+<style>
+*{box-sizing:border-box}:root{--ink:#24516f;--sky:#89dcff;--cream:#fffdf6;--yellow:#ffd76b;--pink:#ffd8e7;--mint:#ccf4d3;--purple:#ddd6ff;--line:#cfeaf7}
+body{margin:0;font-family:Tahoma,'Noto Sans Thai',sans-serif;color:var(--ink);background:linear-gradient(#8bdcff 0 31%,#e9f9ff 31% 100%);min-height:100vh}
+.wrap{max-width:830px;margin:auto;padding:18px 14px 48px}.head{text-align:center;color:white;text-shadow:0 2px 0 #4d9dc5}.head h1{margin:6px 0;font-size:clamp(31px,7vw,54px)}.head b{font-size:clamp(15px,3.6vw,19px)}
+.clouds{text-align:center;font-size:28px;letter-spacing:12px;opacity:.95}.card{background:#fff;border:5px solid #fff;border-radius:30px;padding:23px;margin-top:18px;box-shadow:0 12px 0 #9fd8ec,0 18px 35px #357c9d2f}
+.mascot{text-align:center;font-size:62px}.center{text-align:center}h2{margin:6px 0 16px}.grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px}.field label{display:block;font-weight:800;margin:4px 0 7px}.field input,.field select{width:100%;font:inherit;font-size:18px;padding:14px;border:3px solid var(--line);border-radius:17px;background:#f9fdff;outline:none}.field input:focus,.field select:focus{border-color:#6dc6ee;box-shadow:0 0 0 4px #dff4ff}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.btn{border:0;border-radius:19px;padding:15px;font:inherit;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 5px 0 #bfd0dc;transition:.12s}.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #bfd0dc}.add{background:#fff0a8}.sub{background:#ffd0df}.mix{background:#c9f2c7}.primary{background:#ffc449;color:#694500;width:100%;font-size:21px}.secondary{background:#e9f7ff;color:#27628c;width:100%;margin-top:10px}.selected{outline:4px solid #4ca9db;transform:translateY(-2px)}
+.hidden{display:none}.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.pill{background:#edf9ff;border-radius:30px;padding:9px 13px;font-weight:800}.progress{height:14px;background:#e9eef2;border-radius:20px;overflow:hidden;margin:15px 0}.bar{height:100%;background:#63ce77;width:10%;transition:.25s}.q{text-align:center;font-size:clamp(48px,12vw,80px);font-weight:900;margin:24px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ans{font-size:31px;background:#edf9ff;border:3px solid #caebfa}.feedback{text-align:center;min-height:48px;padding-top:12px;font-size:21px;font-weight:900}.score{font-size:54px;font-weight:900;color:#ff9f1c}.stars{font-size:44px}.note{font-size:13px;color:#6a8298;text-align:center;margin:12px 0 0}.privacy{background:#fff9db;border-radius:15px;padding:11px 13px;font-size:13px;color:#725e1f;margin-top:12px}.status{border-radius:15px;padding:12px 13px;font-weight:800;margin:15px 0}.ok{background:#e2f8e6;color:#28743a}.warn{background:#fff2cf;color:#845f0d}.offline{background:#ffe2e2;color:#8b3535}.tiny{font-size:12px;color:#71899b}
+.badge{display:inline-block;background:#eef9ff;border-radius:999px;padding:7px 12px;font-weight:800;margin:4px}
+@media(max-width:650px){.grid,.modes{grid-template-columns:1fr}.card{padding:17px}.answers{gap:8px}.ans{padding:15px}.head h1{font-size:39px}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="head"><div class="clouds">☁️ ✨ ☁️</div><div>🌈 ห้องเรียนคณิตแสนสนุก</div><h1>Math Adventure ป.1</h1><b>บวก–ลบไม่เกิน 20 • กับครูป๊อป ✨</b></div>
+
+<section class="card" id="login">
+<div class="mascot">🐰🪪🐻</div><h2 class="center">บัตรนักคณิตศาสตร์ตัวน้อย</h2>
+<div class="grid">
+<div class="field"><label>👧🏻 ชื่อ–นามสกุล</label><input id="studentName" maxlength="80" autocomplete="name" placeholder="พิมพ์ชื่อของหนู"></div>
+<div class="field"><label>🏫 ห้องเรียน</label><select id="room"><option value="">เลือกห้อง</option><option>ป.1/1</option><option>ป.1/2</option><option>ป.1/3</option><option>ป.1/4</option><option>ป.1/5</option><option>ป.1/6</option><option>ป.1/7</option></select></div>
+<div class="field"><label>🔢 เลขที่</label><input id="studentNo" type="number" min="1" max="50" inputmode="numeric" placeholder="เช่น 12"></div>
+</div>
+<h3 class="center">เลือกภารกิจ 🎯</h3>
+<div class="modes"><button class="btn add" data-mode="add" onclick="pickMode(this)">➕ การบวก</button><button class="btn sub" data-mode="sub" onclick="pickMode(this)">➖ การลบ</button><button class="btn mix selected" data-mode="mix" onclick="pickMode(this)">🎲 แบบผสม</button></div>
+<button class="btn primary" onclick="startGame()">🚀 เริ่มผจญภัย!</button>
+<p class="note">เล่น 10 ข้อ • ระบบจะส่งผลให้คุณครูเมื่อทำครบ</p>
+<div class="privacy">🔒 ใช้ชื่อ ห้อง และเลขที่เพื่อบันทึกผลการเรียนเท่านั้น หน้านี้ไม่แสดงผลของเพื่อนคนอื่น</div>
+</section>
+
+<section class="card hidden" id="game">
+<div class="top"><div class="pill" id="who"></div><div class="pill">ข้อ <span id="num">1</span>/10</div><div class="pill">⭐ <span id="score">0</span></div></div>
+<div class="progress"><div class="bar" id="bar"></div></div><div class="q" id="q"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div>
+</section>
+
+<section class="card hidden center" id="end">
+<div class="mascot">🎉🏆🎉</div><h2>ภารกิจสำเร็จแล้ว!</h2><div class="stars" id="stars"></div><div class="score"><span id="final"></span>/10</div><p id="summary"></p><div id="saveStatus" class="status warn">กำลังบันทึกผล...</div>
+<button class="btn primary" onclick="playAgain()">🔄 เล่นอีกครั้ง</button><button class="btn secondary" onclick="backHome()">🏠 กลับหน้าหลัก</button>
+<p class="tiny">หากอินเทอร์เน็ตหลุด ระบบจะเก็บผลไว้ในเครื่องและลองส่งอีกครั้งเมื่อเปิดเกมใหม่</p>
+</section>
+</div>
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbyw4dD3LvT9SAKf42nUMoX9INJDHOYp2ivQUN3V9CjDLstAZlH2wtWQt0pvaZefKdwL/exec';
+const GAME_TOKEN='c4--ZXVetpV3zLHr28slaPvYhM1rvuLK';
+const QUEUE_KEY='mathAdventureP1PendingV4';
+let mode='mix',current=0,score=0,correct=0,locked=false,student='',room='',studentNo='',startedAt=0;
+const $=id=>document.getElementById(id);
+function pickMode(el){mode=el.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.remove('selected'));el.classList.add('selected')}
+function show(id){['login','game','end'].forEach(x=>$(x).classList.add('hidden'));$(id).classList.remove('hidden')}
+function startGame(){student=$('studentName').value.trim().replace(/\s+/g,' ');room=$('room').value;studentNo=String(parseInt($('studentNo').value,10)||'');if(student.length<2){alert('กรุณาพิมพ์ชื่อ–นามสกุลก่อนนะคะ 😊');return}if(!room){alert('กรุณาเลือกห้องเรียนก่อนนะคะ 🏫');return}if(!studentNo||+studentNo<1||+studentNo>50){alert('กรุณากรอกเลขที่ 1–50 ก่อนนะคะ 🔢');return}current=0;score=0;startedAt=Date.now();$('score').textContent='0';$('who').textContent=`🌟 ${student} • ${room} • เลขที่ ${studentNo}`;show('game');newQ()}
+function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function newQ(){locked=false;$('feedback').textContent='';let op=mode==='mix'?(Math.random()<.5?'add':'sub'):mode,a,b;if(op==='add'){a=ri(0,20);b=ri(0,20-a);correct=a+b}else{a=ri(0,20);b=ri(0,a);correct=a-b}$('q').textContent=`${a} ${op==='add'?'+':'−'} ${b} = ?`;let opts=new Set([correct]);while(opts.size<4){let v=Math.max(0,Math.min(20,correct+ri(-6,6)));opts.add(v)}$('answers').innerHTML=[...opts].sort(()=>Math.random()-.5).map(x=>`<button class="btn ans" onclick="answer(${x},this)">${x}</button>`).join('');$('num').textContent=current+1;$('bar').style.width=((current+1)*10)+'%'}
+function answer(x,el){if(locked)return;locked=true;if(x===correct){score++;el.style.background='#bff2c5';$('feedback').textContent='🌟 ถูกต้อง เก่งมาก!';$('feedback').style.color='#299640'}else{el.style.background='#ffd2dc';$('feedback').textContent=`💛 เกือบแล้ว คำตอบคือ ${correct}`;$('feedback').style.color='#cc6b26';document.querySelectorAll('.ans').forEach(b=>{if(+b.textContent===correct)b.style.background='#bff2c5'})}$('score').textContent=score;setTimeout(()=>{current++;current<10?newQ():finish()},850)}
+function modeName(){return mode==='add'?'การบวก':mode==='sub'?'การลบ':'แบบผสม'}
+function uid(){return (crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(16).slice(2))}
+async function finish(){let sec=Math.max(1,Math.round((Date.now()-startedAt)/1000));$('final').textContent=score;$('stars').textContent=score>=9?'⭐⭐⭐⭐⭐':score>=7?'⭐⭐⭐⭐':score>=5?'⭐⭐⭐':'⭐⭐';$('summary').innerHTML=`<span class="badge">${escapeHtml(student)}</span><span class="badge">${room}</span><span class="badge">เลขที่ ${studentNo}</span><br>ภารกิจ ${modeName()} • ถูก ${score} จาก 10 ข้อ • ใช้เวลา ${fmt(sec)}`;show('end');let rec={game_token:GAME_TOKEN,session_id:uid(),client_time:new Date().toISOString(),student_name:student,room:room,student_no:+studentNo,student_key:`${room}-${studentNo}`,mode_code:mode,mode_label:modeName(),score:score,total:10,percent:score*10,duration_sec:sec};await submitResult(rec)}
+function isConfigured(){return API_URL&&API_URL.startsWith('https://script.google.com/')&&!API_URL.includes('PASTE_')}
+function getQueue(){try{return JSON.parse(localStorage.getItem(QUEUE_KEY)||'[]')}catch(e){return[]}}
+function setQueue(q){localStorage.setItem(QUEUE_KEY,JSON.stringify(q.slice(-100)))}
+function enqueue(rec){let q=getQueue();if(!q.some(x=>x.session_id===rec.session_id))q.push(rec);setQueue(q)}
+async function postRecord(rec){if(!isConfigured())throw new Error('not-configured');await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(rec),cache:'no-store'})}
+async function submitResult(rec){let box=$('saveStatus');try{await postRecord(rec);box.className='status ok';box.textContent='✅ ส่งผลการเล่นให้คุณครูแล้ว เก่งมากค่ะ!'}catch(e){enqueue(rec);box.className='status '+(navigator.onLine?'warn':'offline');box.textContent=isConfigured()?'📦 บันทึกผลไว้ในเครื่องแล้ว ระบบจะลองส่งให้อีกครั้ง':'🛠️ เกมพร้อมใช้งานแล้ว แต่คุณครูยังไม่ได้เชื่อมระบบหลังบ้าน'}}
+async function retryQueue(){if(!isConfigured()||!navigator.onLine)return;let q=getQueue(),left=[];for(const rec of q){try{await postRecord(rec)}catch(e){left.push(rec)}}setQueue(left)}
+function fmt(s){return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`}
+function playAgain(){current=0;score=0;startedAt=Date.now();$('score').textContent=0;show('game');newQ()}
+function backHome(){show('login')}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+window.addEventListener('online',retryQueue);retryQueue();
+</script></body></html>
