@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ocean Number Rescue ป.1</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,"Noto Sans Thai",sans-serif;background:#073b5c;color:#fff}button,input,select{font:inherit}.screen{display:none;min-height:100vh}.screen.active{display:block}.hidden{display:none!important}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.15),transparent 25%),radial-gradient(circle at 80% 15%,rgba(43,225,215,.16),transparent 24%),linear-gradient(#0c9ac1,#087397 42%,#064a69 70%,#04334f);z-index:-2}body:after{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.4) 0 2px,transparent 2.5px);background-size:86px 86px;opacity:.28;animation:bub 22s linear infinite;z-index:-1}@keyframes bub{to{transform:translateY(-100px)}}
+.wrap{max-width:1000px;margin:auto;padding:20px 14px 80px}.hero{text-align:center;padding-top:30px}.whale{font-size:100px;animation:float 1.7s ease-in-out infinite alternate;filter:drop-shadow(0 10px 0 rgba(0,0,0,.15))}@keyframes float{to{transform:translateY(-9px) rotate(-2deg)}}h1{margin:0;font-size:clamp(38px,8vw,70px);line-height:1;color:#ecffff;text-shadow:0 4px 0 #087394}.sub{font-weight:800;color:#d3fbff;font-size:20px;margin:12px 0 18px}.panel{background:rgba(4,65,91,.86);border:2px solid rgba(210,252,255,.24);border-radius:28px;padding:20px;backdrop-filter:blur(10px);box-shadow:0 20px 55px rgba(0,0,0,.2)}.grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}.field label{display:block;font-weight:900;margin:0 0 6px 4px}input,select{width:100%;padding:13px;border-radius:15px;border:2px solid rgba(219,255,255,.25);background:rgba(255,255,255,.1);color:#fff;outline:none;font-weight:700}select option{color:#163b4c;background:#fff}.btn{border:0;border-radius:17px;padding:13px 18px;font-weight:900;cursor:pointer;box-shadow:0 7px 0 rgba(0,0,0,.18)}.btn:active{transform:translateY(4px);box-shadow:0 3px 0 rgba(0,0,0,.18)}.yellow{background:linear-gradient(#fff69c,#ffd262);color:#5a3a00}.blue{background:linear-gradient(#adf7ff,#69d9f0);color:#164654}.pink{background:linear-gradient(#ffc4e4,#ff92c8);color:#63314b}.green{background:linear-gradient(#c7f7d2,#74dea0);color:#18503a}.purple{background:linear-gradient(#d8ccff,#a68aff);color:#37275e}.small{padding:9px 12px}
+.hud{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:9px 12px;background:rgba(3,48,70,.78);backdrop-filter:blur(10px);border-bottom:1px solid rgba(220,255,255,.16)}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{background:rgba(255,255,255,.1);border:1px solid rgba(220,255,255,.2);padding:7px 10px;border-radius:999px;font-weight:900}.map{background:rgba(4,67,94,.86);border:2px solid rgba(210,252,255,.22);border-radius:30px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.22)}.map-top{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:15px;border-bottom:1px solid rgba(220,255,255,.12)}.shop{background:linear-gradient(#fff4a6,#ffc979);color:#5b3b06;border:0;border-radius:16px;padding:10px 14px;font-weight:900;cursor:pointer}.route{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;padding:38px 5px 20px;position:relative}.route:before{content:"";position:absolute;left:7%;right:7%;top:89px;height:4px;background:repeating-linear-gradient(90deg,rgba(213,255,255,.6) 0 12px,transparent 12px 23px)}.node{position:relative;z-index:2;border:0;background:transparent;color:#fff;cursor:pointer;text-align:center}.node.locked{filter:grayscale(.8);opacity:.5;cursor:not-allowed}.zone{width:100px;height:100px;border-radius:50%;margin:auto;border:3px solid rgba(255,255,255,.7);display:grid;place-items:center;font-size:45px;box-shadow:inset -12px -10px 0 rgba(0,0,0,.12),0 8px 18px rgba(0,0,0,.18)}.z1{background:linear-gradient(135deg,#ffb373,#ff7e8d)}.z2{background:linear-gradient(135deg,#71e1d9,#38a8bd)}.z3{background:linear-gradient(135deg,#9e8dff,#4e71d2)}.z4{background:linear-gradient(135deg,#ff9acb,#9c6de6)}.z5{background:linear-gradient(135deg,#65748f,#26344d)}.node b{display:block;margin-top:7px}.node small{color:#d3f6f8;font-weight:800}.current .zone{outline:4px solid #ffe775;outline-offset:5px}.current:before{content:"🤿";position:absolute;left:50%;top:-30px;transform:translateX(-50%);font-size:34px;animation:float .8s infinite alternate}.keys{text-align:center;font-size:28px;margin:9px 0}
+.quest{max-width:980px;margin:auto;padding:12px 12px 80px}.scene{position:relative;min-height:300px;border-radius:28px 28px 0 0;padding:38px 18px 25px;overflow:hidden}.s1{background:linear-gradient(#1aa4bf 0 57%,#f3ca83 57%)}.s2{background:linear-gradient(#168daf 0 58%,#40b8a2 58%)}.s3{background:linear-gradient(#276fa4 0 58%,#5552a1 58%)}.s4{background:linear-gradient(#167e9f 0 56%,#8c63b2 56%)}.s5{background:radial-gradient(circle at 50% 30%,#345a75,#172d45 60%,#0c1d2d)}.quest-card{background:#06435f;border:2px solid rgba(210,252,255,.2);border-radius:28px;overflow:hidden}.guide{position:absolute;left:20px;bottom:12px;font-size:82px}.boss{position:absolute;right:8%;bottom:14px;font-size:105px}.bossbar{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:min(520px,88%);z-index:3}.hp{height:20px;border:2px solid #fff;border-radius:999px;overflow:hidden;background:#183447}.hp div{height:100%;background:linear-gradient(90deg,#ff6177,#ffd25e);width:100%;transition:.4s}.task{position:relative;z-index:4;max-width:760px;margin:auto;background:rgba(255,255,255,.96);color:#123d4e;border-radius:26px;padding:20px;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.11)}.task h2{margin:0 0 10px;font-size:clamp(21px,4vw,30px)}.badge{display:inline-block;background:#dffafa;color:#08707c;padding:7px 12px;border-radius:999px;font-weight:900;margin-bottom:9px}.slots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0}.slot{width:70px;height:65px;border:3px solid #8acdd3;border-radius:16px;display:grid;place-items:center;background:#f0ffff;font-size:28px;font-weight:900}.bank{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.num{min-width:63px;padding:12px 15px;border:3px solid #9edee4;border-radius:17px;background:#fff;color:#134759;font-size:28px;font-weight:900;cursor:pointer;box-shadow:0 6px 0 #c8e7e9}.num.used{opacity:.35;pointer-events:none}.compare{display:flex;justify-content:center;align-items:center;gap:15px;margin:18px 0}.big{width:110px;height:90px;border:4px solid #a0dfe4;border-radius:22px;background:#fff;display:grid;place-items:center;font-size:42px;font-weight:900}.signs{display:flex;justify-content:center;gap:12px}.sign{width:95px;height:75px;border:3px solid #a0dfe4;border-radius:20px;background:#fff;color:#16495b;font-size:40px;font-weight:900;cursor:pointer}.correct{background:#daf7df!important;border-color:#6dd086!important}.wrong{background:#ffe0e6!important;border-color:#ff8c9d!important}.tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:13px}.hint{max-width:740px;margin:0 auto 12px;background:#fff4bd;color:#5b4508;border-radius:17px;padding:11px 14px;font-weight:900}.feedback{text-align:center;min-height:43px;font-size:20px;font-weight:900;padding:4px 10px 12px}.progress{width:min(340px,40vw);height:14px;border-radius:999px;background:rgba(255,255,255,.13);overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,#64e8da,#ffe574,#ff93c9);transition:.35s}
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,24,36,.74);display:flex;align-items:center;justify-content:center;padding:14px;overflow-y:auto;backdrop-filter:blur(8px)}.modal{width:min(650px,96vw);max-height:calc(100vh - 28px);overflow-y:auto;background:linear-gradient(#075575,#043d5c);border:2px solid rgba(215,255,255,.23);border-radius:27px;padding:20px;text-align:center}.shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}.item{background:rgba(255,255,255,.09);border:2px solid rgba(220,255,255,.15);border-radius:18px;padding:12px}.item .emo{font-size:52px}.owned{border-color:#76dfa3}.equipped{outline:3px solid #ffe46a}.final{max-width:760px;margin:auto;padding:55px 16px 90px;text-align:center}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat{background:rgba(255,255,255,.09);border:1px solid rgba(220,255,255,.18);border-radius:18px;padding:12px}.stat b{display:block;font-size:28px;color:#fff1a0}.credit{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);background:rgba(2,35,52,.74);border:1px solid rgba(220,255,255,.18);padding:6px 12px;border-radius:999px;font-size:10px;z-index:60;white-space:nowrap}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.map-top{flex-direction:column;text-align:center}.shop{width:100%}.route{grid-template-columns:1fr;gap:12px;padding:26px 4px}.route:before{left:51px;right:auto;top:32px;bottom:32px;width:4px;height:auto;background:repeating-linear-gradient(180deg,rgba(213,255,255,.6) 0 12px,transparent 12px 23px)}.node{display:grid;grid-template-columns:100px 1fr;grid-template-rows:auto auto;text-align:left;align-items:center}.zone{grid-row:1/span 2;width:82px;height:82px;margin:0 auto;font-size:37px}.node b{margin:0;font-size:16px}.current:before{left:48px;top:-14px}.task{margin-top:20px}.guide{font-size:65px;left:8px}.stats{grid-template-columns:1fr}.shop-grid{grid-template-columns:1fr}.credit{font-size:9px}}
+
+.resume-box{max-width:720px;margin:14px auto 0;padding:13px 15px;border-radius:18px;background:rgba(255,255,255,.09);border:2px solid rgba(220,255,255,.18);text-align:left}
+.resume-box b{display:block;font-size:16px}.resume-box small{color:#c9f2f5}
+.login-status{min-height:22px;margin-top:10px;font-size:13px;font-weight:800;color:#d9ffff}
+.pause-note{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.08);font-weight:800;color:#d8fbff;margin:10px 0}
+.identity-card{margin:12px 0;padding:13px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(220,255,255,.16)}
+.identity-card .saved-name{font-size:21px;font-weight:1000;color:#fff3a5}
+.modal-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.save-indicator{font-size:12px;color:#ccf8ff;opacity:.9}
+
+</style>
+</head>
+<body><div class="game">
+<section id="start" class="screen active"><div class="wrap hero"><div class="whale">🐬🫧</div><h1>OCEAN NUMBER RESCUE</h1><div class="sub">ภารกิจกู้ไข่มุกตัวเลข 0–20 • เปรียบเทียบและเรียงลำดับจำนวน</div><div class="panel"><div class="grid"><div class="field"><label>👧 ชื่อ–นามสกุล</label><input id="name" placeholder="เช่น ด.ญ. ข้าวหอม ใจดี"></div><div class="field"><label>🏫 ห้อง</label><select id="room"><option value="">เลือกห้อง</option><option>ป.1/1</option><option>ป.1/2</option><option>ป.1/3</option><option>ป.1/4</option><option>ป.1/5</option><option>ป.1/6</option><option>ป.1/7</option></select></div><div class="field"><label>🔢 เลขที่</label><input id="no" type="number" min="1" max="50"></div></div><div style="margin-top:15px"><button id="enterBtn" class="btn yellow" onclick="enterGame()">🤿 เข้าเกม / ค้นหาเซฟเดิม</button></div><div id="loginStatus" class="login-status"></div></div><div id="quickResume" class="resume-box hidden"></div></div></section>
+<section id="mapScreen" class="screen"><div class="hud"><div class="chips"><div class="chip" id="who">🤿 นักสำรวจ</div></div><div class="chips"><span id="mapSaveState" class="save-indicator"></span><button class="btn blue small" onclick="pauseGame()">⏸️ พักเกม</button><div class="chip" id="pearlHud">🫧 0</div><div class="chip" id="shellHud">🐚 0/5</div></div></div><div class="wrap"><div class="keys" id="keys">🔒 🔒 🔒 🔒 🔒</div><div class="map"><div class="map-top"><div><b style="font-size:21px">🐬 เส้นทางกู้ไข่มุกตัวเลข</b><div style="color:#c9f2f5;font-size:13px">เรียงจำนวน เปรียบเทียบ และพิชิตบอสฉลาม</div></div><button class="shop" onclick="openShop()">🪸 PEARL SHOP<br><small>ใช้ไข่มุกแต่งเพื่อนทะเล</small></button></div><div class="route"><button class="node current" onclick="startStage(0)"><div class="zone z1">🐠</div><b>1 • แนวปะการัง</b><small>&lt; หรือ &gt;</small></button><button class="node locked" onclick="startStage(1)"><div class="zone z2">🐬</div><b>2 • อ่าวโลมา</b><small>น้อย → มาก</small></button><button class="node locked" onclick="startStage(2)"><div class="zone z3">🐙</div><b>3 • ถ้ำปลาหมึก</b><small>มาก → น้อย</small></button><button class="node locked" onclick="startStage(3)"><div class="zone z4">🐢</div><b>4 • เมืองเต่า</b><small>เรียง 4 จำนวน</small></button><button class="node locked" onclick="startStage(4)"><div class="zone z5">🦈</div><b>5 • ร่องลึกฉลาม</b><small>FINAL BOSS</small></button></div></div></div></section>
+<section id="quest" class="screen"><div class="hud"><div class="chips"><button class="btn blue small" onclick="leaveQuest()">← แผนที่</button><div class="chip" id="stageHud">ด่าน 1</div></div><div class="chips"><div class="progress"><div id="bar"></div></div><div class="chip" id="qHud">1/10</div><div class="chip" id="stageScoreHud">✅ 0/10</div></div><div class="chips"><span id="questSaveState" class="save-indicator"></span><button class="btn blue small" onclick="pauseGame()">⏸️ พักเกม</button><div class="chip" id="questPearls">🫧 0</div></div></div><div class="quest"><div class="quest-card"><div id="scene" class="scene s1"><div id="bossbar" class="bossbar hidden"><div style="text-align:center;font-weight:900">🦈 ฉลามจอมสับสน</div><div class="hp"><div id="bossHp"></div></div></div><div id="guide" class="guide">🐬</div><div id="boss" class="boss hidden">🦈</div><div id="task" class="task"></div></div><div class="tools"><button class="btn blue small" onclick="speakTask()">🔊 ฟังคำสั่ง</button><button class="btn pink small" onclick="showHint()">💡 คำใบ้</button><button id="resetBtn" class="btn purple small" onclick="resetCurrent()">↩️ เริ่มข้อนี้ใหม่</button></div><div id="hint" class="hint hidden"></div><div id="feedback" class="feedback"></div></div></div></section>
+<section id="final" class="screen"><div class="final"><div class="panel"><div style="font-size:90px">🏆🐬</div><h1 style="font-size:45px">OCEAN RESCUED!</h1><div class="stats"><div class="stat">คะแนนรวม<b id="finalScore">0/50</b></div><div class="stat">ไข่มุก<b id="finalPearls">0 🫧</b></div><div class="stat">เปลือกหอย<b>5 🐚</b></div></div><div id="finalWho"></div><div id="saveStatus" style="margin:12px 0">กำลังบันทึกผล...</div><button class="btn yellow" onclick="restartAll()">🔄 เล่นใหม่อีกครั้ง</button><div style="margin-top:16px;font-weight:900">สร้างสรรค์โดย ครูป๊อป สุธิดา • โรงเรียนคลองบางน้ำจืด</div></div></div></section>
+<div id="rewardOverlay" class="overlay hidden"><div class="modal"><div id="rewardEmo" style="font-size:90px">🐚</div><h2 id="rewardTitle">DIVE CLEAR!</h2><div id="rewardStars" style="font-size:38px">⭐⭐⭐</div><p id="rewardText" style="font-weight:800"></p><button class="btn yellow" onclick="closeReward()">🌊 ไปเขตต่อไป</button></div></div>
+<div id="shopOverlay" class="overlay hidden"><div class="modal"><h2>🪸 PEARL SHOP</h2><div id="preview" style="font-size:76px">🐬</div><div>ไข่มุกของฉัน: <b id="shopPearls">0</b> 🫧</div><div id="shopGrid" class="shop-grid"></div><button class="btn blue" onclick="closeShop()">← กลับแผนที่</button></div></div>
+
+<div id="resumeOverlay" class="overlay hidden"><div class="modal">
+  <div style="font-size:72px">🐬💾</div>
+  <h2>พบการผจญภัยเดิมแล้ว!</h2>
+  <div id="resumeBody" class="identity-card"></div>
+  <div class="modal-actions">
+    <button class="btn green" onclick="confirmResumeSaved()">▶️ เล่นต่อ</button>
+    <button class="btn yellow" onclick="startNewFromResume()">🔄 เริ่มเกมใหม่</button>
+    <button class="btn blue" onclick="closeResume()">↩️ กลับไปแก้ข้อมูล</button>
+  </div>
+</div></div>
+
+<div id="nameMismatchOverlay" class="overlay hidden"><div class="modal">
+  <div style="font-size:72px">🤔🐠</div>
+  <h2>ชื่อที่พิมพ์ไม่เหมือนครั้งก่อน</h2>
+  <div id="nameMismatchBody" class="identity-card"></div>
+  <p style="font-weight:800">ถ้าเป็นหนูคนเดิม เซฟจะไม่หาย เพราะระบบจำจาก “ห้อง + เลขที่” ค่ะ</p>
+  <div class="modal-actions">
+    <button class="btn green" onclick="resumeUseSavedName()">✅ ใช่ ใช้ชื่อเดิม</button>
+    <button class="btn yellow" onclick="resumeUpdateName()">✏️ ใช่ แก้เป็นชื่อใหม่</button>
+    <button class="btn blue" onclick="cancelMismatch()">↩️ ไม่ใช่ เลือกใหม่</button>
+  </div>
+</div></div>
+
+<div id="pauseOverlay" class="overlay hidden"><div class="modal">
+  <div style="font-size:80px">⏸️🐬</div>
+  <h2>พักเกมได้เลย</h2>
+  <div id="pauseBody" class="pause-note">กำลังบันทึก...</div>
+  <p style="color:#d4f7fb">ครั้งหน้ากรอกชื่อ ห้อง และเลขที่ แล้วกด “เข้าเกม / ค้นหาเซฟเดิม” ระบบจะพากลับมาจุดล่าสุดค่ะ</p>
+  <div class="modal-actions">
+    <button class="btn green" onclick="continueNow()">▶️ เล่นต่อเดี๋ยวนี้</button>
+    <button class="btn yellow" onclick="returnToStartAfterPause()">🏠 กลับหน้าแรก</button>
+  </div>
+</div></div>
+
+<div class="credit">🌊 สร้างสรรค์โดย ครูป๊อป สุธิดา • โรงเรียนคลองบางน้ำจืด</div>
+</div>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbwqaIOeGZRVXJVMUz2ieWqZoyvaXa37sokx7V3qbpEBM-zjHHP-nTnECLO4sYWQH4AeJw/exec';
+const GAME_TOKEN='c4--ZXVetpV3zLHr28slaPvYhM1rvuLK';
+const GAME_ID='ocean_number_rescue_v4_save_resume';
+const QUESTIONS_PER_STAGE=10, PASS_SCORE=7, TOTAL_STAGES=5, TOTAL_SCORE=50;
+const LAST_PROFILE_KEY='oceanNumberRescue:lastProfile:v4';
+
+const stages=[
+{name:'แนวปะการัง',type:'compare',scene:'s1',label:'< หรือ >'},
+{name:'อ่าวโลมา',type:'asc3',scene:'s2',label:'น้อย → มาก'},
+{name:'ถ้ำปลาหมึก',type:'desc3',scene:'s3',label:'มาก → น้อย'},
+{name:'เมืองเต่า',type:'sort4',scene:'s4',label:'เรียง 4 จำนวน'},
+{name:'ร่องลึกฉลาม',type:'boss',scene:'s5',label:'FINAL BOSS'}];
+
+const shopItems=[
+{id:'dolphin',emoji:'🐬',name:'โลมานำทาง',cost:0},{id:'turtle',emoji:'🐢',name:'เต่าน้อย',cost:6},
+{id:'octopus',emoji:'🐙',name:'ปลาหมึกจอมคิด',cost:8},{id:'fish',emoji:'🐠',name:'ปลาสีรุ้ง',cost:9},
+{id:'whale',emoji:'🐳',name:'วาฬใจดี',cost:11},{id:'seal',emoji:'🦭',name:'แมวน้ำ',cost:12}];
+
+let student={name:'',room:'',no:''},unlocked=0,currentStage=0,qIndex=0,stageCorrect=0,pearls=0;
+let passed=[false,false,false,false,false],best=[0,0,0,0,0],questions=[],current=null,selection=[];
+let startedAt=Date.now(),elapsedBase=0,rewardOK=false,inventory=['dolphin'],equipped='dolphin',answerLocked=false;
+let pendingSaved=null,pendingTypedName='',lastContext='map';
+
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');if(id==='quest')lastContext='quest';if(id==='mapScreen')lastContext='map';window.scrollTo(0,0)}
+function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function sample(n){const s=new Set();while(s.size<n)s.add(ri(0,20));return [...s]}
+function uid(){return crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(16).slice(2)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function normName(s){return String(s||'').trim().replace(/\s+/g,' ').toLowerCase()}
+function progressKey(room,no){return `oceanNumberRescue:v4:${room}:${no}`}
+function avatar(){return (shopItems.find(x=>x.id===equipped)||shopItems[0]).emoji}
+function activeElapsed(){return elapsedBase+Math.max(0,Math.round((Date.now()-startedAt)/1000))}
+function setSaveText(t){['mapSaveState','questSaveState'].forEach(id=>{const e=$(id);if(e)e.textContent=t})}
+function sound(f=720,d=.08,t='sine'){try{const A=new(window.AudioContext||window.webkitAudioContext)(),o=A.createOscillator(),g=A.createGain();o.type=t;o.frequency.value=f;o.connect(g);g.connect(A.destination);g.gain.setValueAtTime(.12,A.currentTime);g.gain.exponentialRampToValueAtTime(.001,A.currentTime+d);o.start();o.stop(A.currentTime+d)}catch(e){}}
+function good(){sound(720);setTimeout(()=>sound(960,.12),80)} function bad(){sound(220,.17,'sawtooth')}
+
+function snapshot(contextOverride){return {version:4,game_id:GAME_ID,student:{...student},context:contextOverride||lastContext,unlocked,currentStage,qIndex,stageCorrect,pearls,passed:[...passed],best:[...best],inventory:[...inventory],equipped,questions:questions.map(q=>JSON.parse(JSON.stringify(q))),elapsed_sec:activeElapsed(),updated_at:new Date().toISOString()}}
+function saveLocal(snap){try{localStorage.setItem(progressKey(student.room,student.no),JSON.stringify(snap));localStorage.setItem(LAST_PROFILE_KEY,JSON.stringify({name:student.name,room:student.room,no:student.no}))}catch(e){}}
+function loadLocal(room,no){try{return JSON.parse(localStorage.getItem(progressKey(room,no))||'null')}catch(e){return null}}
+
+async function saveProgress(reason='auto',contextOverride){
+ if(!student.room||!student.no)return;
+ const snap=snapshot(contextOverride);saveLocal(snap);setSaveText('💾 บันทึกแล้ว');setTimeout(()=>setSaveText(''),1100);
+ const payload={action:'save_progress',game_token:GAME_TOKEN,game_id:GAME_ID,student_name:student.name,room:student.room,student_no:+student.no,reason,progress:snap};
+ try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),cache:'no-store'})}catch(e){}
+}
+
+function cloudLoad(room,no,timeoutMs=2600){
+ return new Promise(resolve=>{
+  const cb='ocean_cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);let done=false;const script=document.createElement('script');
+  const finish=v=>{if(done)return;done=true;try{delete window[cb]}catch(e){};script.remove();resolve(v)};
+  window[cb]=d=>finish(d&&d.ok&&d.found?d:null);script.onerror=()=>finish(null);
+  script.src=API_URL+'?action=load_progress&game_id='+encodeURIComponent(GAME_ID)+'&room='+encodeURIComponent(room)+'&student_no='+encodeURIComponent(no)+'&callback='+encodeURIComponent(cb)+'&_='+Date.now();
+  document.head.appendChild(script);setTimeout(()=>finish(null),timeoutMs);
+ });
+}
+
+async function enterGame(){
+ const typed=$('name').value.trim(),room=$('room').value,no=$('no').value;
+ if(!typed||!room||!no){alert('กรอกชื่อ ห้อง และเลขที่ให้ครบก่อนนะคะ');return}
+ $('enterBtn').disabled=true;$('loginStatus').textContent='🔎 กำลังค้นหาเซฟเดิม...';
+ const local=loadLocal(room,no),cloud=await cloudLoad(room,no);let saved=cloud&&cloud.progress?cloud.progress:null;
+ if(local&&(!saved||String(local.updated_at||'')>String(saved.updated_at||'')))saved=local;
+ $('enterBtn').disabled=false;$('loginStatus').textContent='';
+ if(!saved){startFresh({name:typed,room,no});return}
+ pendingSaved=saved;pendingTypedName=typed;const savedName=(saved.student&&saved.student.name)||(cloud&&cloud.student_name)||'';
+ if(savedName&&normName(savedName)!==normName(typed)){
+  $('nameMismatchBody').innerHTML=`ชื่อที่เคยบันทึก: <div class="saved-name">${esc(savedName)}</div><br>ชื่อที่พิมพ์ครั้งนี้: <b>${esc(typed)}</b><br>${esc(room)} • เลขที่ ${esc(no)}`;openOverlay('nameMismatchOverlay');
+ }else showResumeDialog(saved,typed);
+}
+
+function showResumeDialog(saved,typedName){
+ pendingSaved=saved;pendingTypedName=typedName;
+ const stageNo=Math.min((saved.currentStage||0)+1,5);
+ const loc=saved.context==='quest'&&saved.qIndex<10?`ด่าน ${stageNo} • ข้อ ${(saved.qIndex||0)+1}/10`:`ปลดล็อกถึงด่าน ${Math.min((saved.unlocked||0)+1,5)}`;
+ $('resumeBody').innerHTML=`<div class="saved-name">${esc((saved.student&&saved.student.name)||typedName)}</div>${esc(saved.student?.room||$('room').value)} • เลขที่ ${esc(saved.student?.no||$('no').value)}<br><br>📍 ล่าสุด: <b>${loc}</b><br>🫧 ไข่มุก ${saved.pearls||0} • 🐚 ผ่าน ${(saved.passed||[]).filter(Boolean).length}/5`;openOverlay('resumeOverlay');
+}
+function confirmResumeSaved(){closeOverlay('resumeOverlay');applySaved(pendingSaved,false)}
+function resumeUseSavedName(){closeOverlay('nameMismatchOverlay');applySaved(pendingSaved,false)}
+function resumeUpdateName(){closeOverlay('nameMismatchOverlay');if(pendingSaved.student)pendingSaved.student.name=pendingTypedName;applySaved(pendingSaved,true)}
+function cancelMismatch(){closeOverlay('nameMismatchOverlay');pendingSaved=null}
+function closeResume(){closeOverlay('resumeOverlay');pendingSaved=null}
+function startNewFromResume(){if(!confirm('เริ่มเกมใหม่จะเขียนทับเซฟเดิมของห้องและเลขที่นี้ ต้องการเริ่มใหม่ใช่ไหม?'))return;closeOverlay('resumeOverlay');const p=pendingSaved?.student||{};startFresh({name:pendingTypedName||p.name,room:p.room||$('room').value,no:p.no||$('no').value})}
+
+function startFresh(profile){
+ student={name:profile.name,room:profile.room,no:String(profile.no)};unlocked=0;currentStage=0;qIndex=0;stageCorrect=0;pearls=0;
+ passed=[false,false,false,false,false];best=[0,0,0,0,0];questions=[];current=null;selection=[];inventory=['dolphin'];equipped='dolphin';answerLocked=false;elapsedBase=0;startedAt=Date.now();lastContext='map';
+ renderMap();show('mapScreen');saveProgress('new_game','map');
+}
+function applySaved(s,updateName){
+ const p=s.student||{};student={name:updateName?pendingTypedName:(p.name||pendingTypedName),room:p.room||$('room').value,no:String(p.no||$('no').value)};
+ unlocked=Math.max(0,Math.min(4,Number(s.unlocked)||0));currentStage=Math.max(0,Math.min(4,Number(s.currentStage)||0));qIndex=Math.max(0,Math.min(10,Number(s.qIndex)||0));stageCorrect=Math.max(0,Math.min(10,Number(s.stageCorrect)||0));pearls=Math.max(0,Number(s.pearls)||0);
+ passed=Array.isArray(s.passed)?s.passed.slice(0,5).map(Boolean):[false,false,false,false,false];while(passed.length<5)passed.push(false);
+ best=Array.isArray(s.best)?s.best.slice(0,5).map(x=>Math.max(0,Math.min(10,Number(x)||0))):[0,0,0,0,0];while(best.length<5)best.push(0);
+ inventory=Array.isArray(s.inventory)&&s.inventory.length?s.inventory.filter(x=>shopItems.some(i=>i.id===x)):['dolphin'];if(!inventory.includes('dolphin'))inventory.unshift('dolphin');equipped=inventory.includes(s.equipped)?s.equipped:'dolphin';
+ questions=Array.isArray(s.questions)?s.questions:[];elapsedBase=Math.max(0,Number(s.elapsed_sec)||0);startedAt=Date.now();answerLocked=false;selection=[];
+ if(s.context==='quest'&&qIndex<10&&questions.length===10)resumeQuestScreen();else{lastContext='map';renderMap();show('mapScreen')}saveProgress(updateName?'name_updated':'resume');
+}
+function resumeQuestScreen(){
+ lastContext='quest';$('stageHud').textContent=`ด่าน ${currentStage+1} • ${stages[currentStage].name}`;$('questPearls').textContent=`🫧 ${pearls}`;$('scene').className=`scene ${stages[currentStage].scene}`;$('guide').textContent=avatar();
+ const boss=currentStage===4;$('bossbar').classList.toggle('hidden',!boss);$('boss').classList.toggle('hidden',!boss);if(boss)$('bossHp').style.width=`${Math.max(0,100-(stageCorrect/7)*100)}%`;show('quest');renderQ();
+}
+
+function renderMap(){
+ $('who').textContent=`🤿 ${student.name} • ${student.room} เลขที่ ${student.no}`;$('pearlHud').textContent=`🫧 ${pearls}`;$('shellHud').textContent=`🐚 ${passed.filter(Boolean).length}/5`;$('keys').textContent=passed.map(x=>x?'🐚':'🔒').join(' ');
+ const cur=Math.min(unlocked,4);document.querySelectorAll('.node').forEach((n,i)=>{n.classList.toggle('locked',i>unlocked);n.classList.toggle('current',i===cur);n.querySelector('small').textContent=passed[i]?'✅ ผ่านแล้ว':i>unlocked?'🔒 ยังไม่ปลดล็อก':stages[i].label});
+}
+function startStage(i){
+ if(i>unlocked)return;currentStage=i;qIndex=0;stageCorrect=0;answerLocked=false;questions=Array.from({length:10},()=>makeQ(stages[i].type));
+ $('stageHud').textContent=`ด่าน ${i+1} • ${stages[i].name}`;$('questPearls').textContent=`🫧 ${pearls}`;$('stageScoreHud').textContent='✅ 0/10';$('scene').className=`scene ${stages[i].scene}`;$('guide').textContent=avatar();
+ const boss=i===4;$('bossbar').classList.toggle('hidden',!boss);$('boss').classList.toggle('hidden',!boss);if(boss)$('bossHp').style.width='100%';lastContext='quest';show('quest');renderQ();saveProgress('stage_start','quest');
+}
+function makeQ(type){
+ if(type==='asc3'){const nums=sample(3);return {kind:'sort',dir:'asc',nums,answer:[...nums].sort((a,b)=>a-b),instruction:'แตะตัวเลขเรียงจากน้อยไปมาก',hint:'เริ่มจากจำนวนที่น้อยที่สุด'}}
+ if(type==='desc3'){const nums=sample(3);return {kind:'sort',dir:'desc',nums,answer:[...nums].sort((a,b)=>b-a),instruction:'แตะตัวเลขเรียงจากมากไปน้อย',hint:'เริ่มจากจำนวนที่มากที่สุด'}}
+ if(type==='compare'){let a=ri(0,20),b=ri(0,20);while(a===b)b=ri(0,20);return {kind:'compare',a,b,answer:a<b?'<':'>',instruction:'เลือกเครื่องหมายที่ถูกต้อง',hint:'ปากกว้างหันไปหาจำนวนที่มากกว่า'}}
+ if(type==='sort4'){const nums=sample(4),dir=Math.random()<.5?'asc':'desc';return {kind:'sort',dir,nums,answer:[...nums].sort((a,b)=>dir==='asc'?a-b:b-a),instruction:dir==='asc'?'เรียง 4 จำนวนจากน้อยไปมาก':'เรียง 4 จำนวนจากมากไปน้อย',hint:dir==='asc'?'หาเลขน้อยที่สุดก่อน':'หาเลขมากที่สุดก่อน'}}
+ if(Math.random()<.5){const nums=sample(4),dir=Math.random()<.5?'asc':'desc';return {kind:'sort',dir,nums,answer:[...nums].sort((a,b)=>dir==='asc'?a-b:b-a),instruction:dir==='asc'?'บอสท้า! เรียงจากน้อยไปมาก':'บอสท้า! เรียงจากมากไปน้อย',hint:dir==='asc'?'เริ่มจากเลขน้อยที่สุด':'เริ่มจากเลขมากที่สุด'}}
+ let a=ri(0,20),b=ri(0,20);while(a===b)b=ri(0,20);return {kind:'compare',a,b,answer:a<b?'<':'>',instruction:'บอสท้า! เลือก < หรือ >',hint:'ปากกว้างหันไปหาจำนวนที่มากกว่า'}
+}
+function renderQ(){
+ if(qIndex>=10){finishStage();return}current=questions[qIndex];selection=[];answerLocked=false;$('qHud').textContent=`${qIndex+1}/10`;$('stageScoreHud').textContent=`✅ ${stageCorrect}/10`;$('bar').style.width=`${qIndex*10}%`;$('feedback').textContent='';$('hint').classList.add('hidden');$('resetBtn').classList.toggle('hidden',current.kind!=='sort');
+ if(current.kind==='sort')$('task').innerHTML=`<div class="badge">${current.dir==='asc'?'⬆️ น้อย → มาก':'⬇️ มาก → น้อย'}</div><h2>${current.instruction}</h2><div class="slots">${current.answer.map(()=>'<div class="slot">?</div>').join('')}</div><div class="bank">${current.nums.map((n,i)=>`<button class="num" onclick="pickNum(${i},this)">${n}</button>`).join('')}</div>`;
+ else $('task').innerHTML=`<div class="badge">🐙 เปรียบเทียบจำนวน</div><h2>${current.instruction}</h2><div class="compare"><div class="big">${current.a}</div><div style="font-size:35px">?</div><div class="big">${current.b}</div></div><div class="signs"><button class="sign" onclick="chooseSign('<',this)">&lt;</button><button class="sign" onclick="chooseSign('>',this)">&gt;</button></div>`;
+}
+function pickNum(i,b){if(answerLocked||b.classList.contains('used'))return;selection.push(current.nums[i]);b.classList.add('used');document.querySelectorAll('.slot').forEach((s,j)=>s.textContent=selection[j]??'?');if(selection.length===current.answer.length)checkSort()}
+function resetCurrent(){if(answerLocked)return;selection=[];document.querySelectorAll('.num').forEach(b=>b.classList.remove('used'));document.querySelectorAll('.slot').forEach(s=>s.textContent='?');$('feedback').textContent=''}
+function eq(a,b){return a.length===b.length&&a.every((v,i)=>v===b[i])}
+function checkSort(){if(answerLocked)return;answerLocked=true;const ok=eq(selection,current.answer);document.querySelectorAll('.num').forEach(b=>b.disabled=true);if(ok){stageCorrect++;pearls+=2;good();$('feedback').textContent=`🌟 ถูกต้อง! คะแนนด่าน ${stageCorrect}/10`}else{bad();$('feedback').textContent=`💛 ลำดับที่ถูกคือ ${current.answer.join(' → ')}`}afterAnswer(ok)}
+function chooseSign(s,b){if(answerLocked)return;answerLocked=true;document.querySelectorAll('.sign').forEach(x=>x.disabled=true);const ok=s===current.answer;if(ok){stageCorrect++;pearls+=2;b.classList.add('correct');good();$('feedback').textContent=`🌟 ถูกต้อง! คะแนนด่าน ${stageCorrect}/10`}else{b.classList.add('wrong');document.querySelectorAll('.sign').forEach(x=>{if(x.textContent===current.answer)x.classList.add('correct')});bad();$('feedback').textContent=`💛 คำตอบคือ ${current.a} ${current.answer} ${current.b}`}afterAnswer(ok)}
+function afterAnswer(ok){$('questPearls').textContent=`🫧 ${pearls}`;$('stageScoreHud').textContent=`✅ ${stageCorrect}/10`;if(currentStage===4&&ok)$('bossHp').style.width=`${Math.max(0,100-(stageCorrect/7)*100)}%`;setTimeout(()=>{qIndex++;if(qIndex<10){saveProgress('answer','quest');renderQ()}else finishStage()},900)}
+function showHint(){$('hint').textContent='💡 '+current.hint;$('hint').classList.remove('hidden')}
+function speakTask(){if(!('speechSynthesis'in window))return;const t=current.instruction+(current.kind==='compare'?` ${current.a} เทียบกับ ${current.b}`:` ตัวเลข ${current.nums.join(' ')}`);speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='th-TH';u.rate=.84;speechSynthesis.speak(u)}
+function leaveQuest(){lastContext='map';renderMap();show('mapScreen');saveProgress('leave_stage','map')}
+
+function finishStage(){
+ $('bar').style.width='100%';best[currentStage]=Math.max(best[currentStage],stageCorrect);const pass=stageCorrect>=7;
+ if(pass){const first=!passed[currentStage];passed[currentStage]=true;unlocked=Math.max(unlocked,Math.min(4,currentStage+1));const bonus=stageCorrect===10?5:3;if(first)pearls+=bonus;rewardOK=true;$('rewardEmo').textContent=currentStage===4?'🏆':'🐚';$('rewardTitle').textContent=currentStage===4?'SHARK DEFEATED!':'DIVE CLEAR!';$('rewardStars').textContent=stageCorrect===10?'⭐⭐⭐':'⭐⭐';$('rewardText').textContent=`ผ่าน ${stages[currentStage].name} ได้ ${stageCorrect}/10 • รับโบนัส ${bonus} ไข่มุก`;lastContext='map';saveProgress('stage_pass','map')}
+ else{rewardOK=false;$('rewardEmo').textContent='🫧';$('rewardTitle').textContent='ลองอีกครั้งนะ';$('rewardStars').textContent='⭐';$('rewardText').textContent=`ได้ ${stageCorrect}/10 • ต้องได้อย่างน้อย 7/10 จึงจะผ่านด่าน`;lastContext='quest';saveProgress('stage_retry','quest')}
+ openOverlay('rewardOverlay');
+}
+function closeReward(){closeOverlay('rewardOverlay');if(!rewardOK){startStage(currentStage);return}if(currentStage===4&&passed[4]){finishGame();return}renderMap();show('mapScreen')}
+
+async function pauseGame(){await saveProgress('pause',lastContext);$('pauseBody').innerHTML=`✅ บันทึกแล้ว<br><b>${esc(student.name)}</b> • ${esc(student.room)} เลขที่ ${esc(student.no)}<br>📍 ${lastContext==='quest'?`ด่าน ${currentStage+1} ข้อ ${Math.min(qIndex+1,10)}/10`:`ปลดล็อกถึงด่าน ${unlocked+1}`}`;openOverlay('pauseOverlay')}
+function continueNow(){closeOverlay('pauseOverlay')}
+function returnToStartAfterPause(){closeOverlay('pauseOverlay');show('start');initQuickResume()}
+function openOverlay(id){$(id).classList.remove('hidden');document.body.classList.add('modal-open')}
+function closeOverlay(id){$(id).classList.add('hidden');document.body.classList.remove('modal-open')}
+
+function openShop(){renderShop();openOverlay('shopOverlay')}
+function closeShop(){closeOverlay('shopOverlay');renderMap();saveProgress('shop','map')}
+function renderShop(){$('shopPearls').textContent=pearls;$('preview').textContent=avatar();$('shopGrid').innerHTML=shopItems.map(it=>{const own=inventory.includes(it.id),eqp=equipped===it.id;return `<div class="item ${own?'owned':''} ${eqp?'equipped':''}"><div class="emo">${it.emoji}</div><b>${it.name}</b><div>${own?'มีแล้ว':it.cost+' 🫧'}</div><button class="btn ${own?'green':'yellow'} small" onclick="buy('${it.id}')">${own?(eqp?'ใช้อยู่':'เลือกใช้'):'ซื้อ'}</button></div>`}).join('')}
+function buy(id){const it=shopItems.find(x=>x.id===id);if(inventory.includes(id)){equipped=id;renderShop();saveProgress('equip',lastContext);return}if(pearls<it.cost){alert('ไข่มุกยังไม่พอค่ะ');return}pearls-=it.cost;inventory.push(id);equipped=id;renderShop();saveProgress('purchase',lastContext)}
+
+async function finishGame(){
+ const score=best.reduce((a,b)=>a+b,0);$('finalScore').textContent=`${score}/50`;$('finalPearls').textContent=`${pearls} 🫧`;$('finalWho').innerHTML=`<b>${esc(student.name)}</b> • ${student.room} • เลขที่ ${student.no}`;show('final');
+ const rec={action:'final_result',game_token:GAME_TOKEN,session_id:uid(),client_time:new Date().toISOString(),student_name:student.name,room:student.room,student_no:+student.no,student_key:`${student.room}-${student.no}`,mode_code:'ocean_number_order_compare_v4',mode_label:'Ocean Number Rescue เปรียบเทียบและเรียงลำดับ 0-20',score,total:50,percent:Math.round(score/50*100),duration_sec:activeElapsed()};
+ try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(rec),cache:'no-store'});$('saveStatus').textContent='✅ ส่งผลการเล่นให้คุณครูแล้ว'}catch(e){$('saveStatus').textContent='📦 เล่นจบแล้ว แต่ยังส่งผลไม่ได้'}lastContext='map';saveProgress('completed','map');
+}
+function restartAll(){if(!confirm('ต้องการเริ่มใหม่ตั้งแต่ด่าน 1 ใช่ไหม?'))return;startFresh({...student})}
+
+function initQuickResume(){
+ const box=$('quickResume');if(!box)return;
+ try{const p=JSON.parse(localStorage.getItem(LAST_PROFILE_KEY)||'null');if(!p||!p.room||!p.no){box.classList.add('hidden');return}const s=loadLocal(p.room,p.no);if(!s){box.classList.add('hidden');return}
+ box.innerHTML=`<b>🐬 มีเกมที่เล่นค้างไว้ในเครื่องนี้</b><small>${esc(p.name||'')} • ${esc(p.room)} • เลขที่ ${esc(p.no)}</small><div style="margin-top:9px"><button class="btn green small" onclick="quickResumeLocal()">▶️ เล่นต่อทันที</button></div>`;box.classList.remove('hidden')}catch(e){box.classList.add('hidden')}
+}
+function quickResumeLocal(){try{const p=JSON.parse(localStorage.getItem(LAST_PROFILE_KEY)||'null');if(!p)return;const s=loadLocal(p.room,p.no);if(!s)return;pendingTypedName=p.name||s.student?.name||'';pendingSaved=s;applySaved(s,false)}catch(e){}}
+window.addEventListener('pagehide',()=>{if(student.room&&student.no){try{saveLocal(snapshot(lastContext))}catch(e){}}});
+window.addEventListener('DOMContentLoaded',initQuickResume);
+</script>
+</body></html>
